@@ -29,12 +29,64 @@ const reviews = [
     text: 'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
   },
 ];
+
+
+
+
+
 // select items
-const img = document.getElementById('person-img');
+const image = document.getElementById('person-img');
 const author = document.getElementById('author');
 const job = document.getElementById('job');
 const info = document.getElementById('info');
 
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
-const randomBtn = document.querySelector('.random-btn');
+      let testi = 0
+
+      function ubahData(e) {
+        const { name, job, img, text } = e
+
+        author.textContent = name;
+        job.textContent = job;
+        info.textContent = text;
+        image.src = img;
+      }
+
+      function nextData() {
+        testi++
+        if (testi >= reviews.length) {
+          testi = 0
+        }
+        ubahData(reviews[testi])
+      }
+
+      function prevData() {
+        testi--
+        if (testi < 0) {
+          testi = reviews.length - 1
+        }
+       ubahData(reviews[testi])
+      }
+
+      function allData() {
+        const index = Math.floor(Math.random() * reviews.length)
+        testi = index
+        ubahData(reviews[testi])
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        ubahData(reviews[testi])
+
+        
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const randomBtn = document.querySelector('.random-btn');
+
+        prevBtn.addEventListener('click', prevData)
+        nextBtn.addEventListener('click', nextData)
+        randomBtn.addEventListener('click', allData)
+
+
+})
+
+
+
